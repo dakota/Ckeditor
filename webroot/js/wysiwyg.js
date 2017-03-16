@@ -81,7 +81,7 @@ Croogo.Wysiwyg.Ckeditor = {
 
 }
 
-Croogo.Wysiwyg.checkDirty = function() {
+Croogo.Wysiwyg.isDirty = function() {
 	for (var editor in CKEDITOR.instances) {
 		if (CKEDITOR.instances[editor].checkDirty()) {
 			return true;
