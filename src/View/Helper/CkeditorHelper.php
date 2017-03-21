@@ -5,6 +5,7 @@ namespace Croogo\Ckeditor\View\Helper;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\View\Helper;
+use Croogo\Core\Router;
 
 /**
  * Ckeditor Helper
@@ -49,30 +50,8 @@ class CkeditorHelper extends Helper
      */
     public function beforeRender($viewFile)
     {
-        $actions = Configure::read('Wysiwyg.actions');
-        if (is_array($actions)) {
-            foreach ($actions as $key => $value) {
-                if (is_string($value)) {
-                    $key = $value;
-                }
-                $this->actions[] = $key;
-            }
-        }
-
-        $pluginPath = $controller = null;
-        if (!empty($this->request->params['plugin'])) {
-            $pluginPath = $this->request->params['plugin'] . '.';
-        }
-        if (!empty($this->request->params['controller'])) {
-            $controller = $this->request->params['controller'];
-        }
-        if (!empty($this->request->params['prefix'])) {
-            $prefixes = array_map('Cake\Utility\Inflector::camelize', explode('/', $this->request->params['prefix']));
-            $controller = implode('/', $prefixes) . '/' . $controller;
-        }
-
-        $className = $pluginPath . $controller;
-        $action = $className . '.' . $this->request->params['action'];
+        $this->actions = array_keys(Configure::read('Wysiwyg.actions'));
+        $action = Router::getActionPath($this->request, true);
         if (!empty($this->actions) && in_array($action, $this->actions)) {
             $this->Html->script('Croogo/Ckeditor.wysiwyg', ['block' => true]);
             $this->Html->script('Croogo/Ckeditor.ckeditor', ['block' => true]);

@@ -40,9 +40,10 @@ class CkeditorEventHandler implements EventListenerInterface
             if (is_numeric($action)) {
                 $action = $settings;
             }
-            $action = explode('.', $action);
+            $action = base64_decode($action);
+            $action = explode('/', $action);
             array_pop($action);
-            Croogo::hookHelper(implode('.', $action), 'Croogo/Ckeditor.Ckeditor');
+            Croogo::hookHelper(implode('/', $action), 'Croogo/Ckeditor.Ckeditor');
         }
     }
 
