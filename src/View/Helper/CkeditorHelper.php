@@ -68,7 +68,7 @@ class CkeditorHelper extends Helper
                 $config = empty($actionItem) ? '{}' : $this->Js->object($actionItem);
                 $out .= sprintf('Croogo.Wysiwyg.Ckeditor.setup("%s", %s);', $element, $config);
             }
-            $this->Html->scriptBlock($out, ['block' => 'scriptBottom']);
+            $this->Js->buffer($out);
         }
     }
 }
