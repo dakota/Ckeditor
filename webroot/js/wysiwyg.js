@@ -108,7 +108,8 @@ Croogo.Wysiwyg.choose = function(url, title, description) {
 	}
 
 	if (typeof paramsObj['CKEditorFuncNum'] != 'undefined') {
-		window.top.opener.CKEDITOR.tools.callFunction(paramsObj['CKEditorFuncNum'], Croogo.Wysiwyg.uploadsPath + url);
+		window.top.opener.CKEDITOR.tools.callFunction(paramsObj['CKEditorFuncNum'], url);
 		window.top.close();
 	}
+	return false;
 }
