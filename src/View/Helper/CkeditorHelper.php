@@ -51,7 +51,7 @@ class CkeditorHelper extends Helper
     public function beforeRender($viewFile)
     {
         $this->actions = array_keys(Configure::read('Wysiwyg.actions'));
-        $action = Router::getActionPath($this->request, true);
+        $action = Router::getActionPath($this->getView()->getRequest(), true);
         if (!empty($this->actions) && in_array($action, $this->actions)) {
             $this->Html->script('Croogo/Ckeditor.wysiwyg', ['block' => 'scriptBottom']);
             $this->Html->script('Croogo/Ckeditor.ckeditor', ['block' => 'scriptBottom']);
