@@ -69,7 +69,7 @@ Croogo.Wysiwyg.Ckeditor = {
         $.extend(defaults, preset);
         $.extend(defaults, config);
         $.extend(config, defaults);
-        el = $('#' + el + ':not(.no-wysiwyg)');
+        el = $(el + ':not(.no-wysiwyg)');
         if (el.length == 0) {
             return;
         };
