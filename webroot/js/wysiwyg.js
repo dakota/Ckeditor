@@ -73,13 +73,7 @@ Croogo.Wysiwyg.Ckeditor = {
         if ($el.length == 0) {
             return;
         };
-        var $btnContainer = $el.siblings('.btn-group');
-        if ($btnContainer.length == 0) {
-            $btnContainer = $('<div class="btn-group float-right"/>');
-        }
-        $btnContainer.insertBefore(el);
 
-        var $btn = $('<button type="button" class="btn btn-sm btn-outline-secondary">Ckeditor</button>');
         var onClickCallback = function(e) {
             var elementId = $el.attr('id');
             if (typeof CKEDITOR.instances[elementId] == 'undefined') {
@@ -93,9 +87,7 @@ Croogo.Wysiwyg.Ckeditor = {
                 $el.focus();
             }
         }
-
-        $btn.on('click', onClickCallback);
-        $btnContainer.append($btn);
+        Croogo.Wysiwyg.addButton($el, 'Ckeditor', onClickCallback);
     }
 
 }
