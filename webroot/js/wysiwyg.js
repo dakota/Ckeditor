@@ -69,14 +69,33 @@ Croogo.Wysiwyg.Ckeditor = {
         $.extend(defaults, preset);
         $.extend(defaults, config);
         $.extend(config, defaults);
-        el = $(el + ':not(.no-wysiwyg)');
-        if (el.length == 0) {
+        var $el = $(el + ':not(.no-wysiwyg)');
+        if ($el.length == 0) {
             return;
         };
-        CKEDITOR.replace(el.get(0), config);
-        CKEDITOR.on('instanceLoaded', function(evt) {
-            CKEDITOR.skin.loadPart('croogo');
-        });
+        var $btnContainer = $el.siblings('.btn-group');
+        if ($btnContainer.length == 0) {
+            $btnContainer = $('<div class="btn-group float-right"/>');
+        }
+        $btnContainer.insertBefore(el);
+
+        var $btn = $('<button type="button" class="btn btn-sm btn-outline-secondary">Ckeditor</button>');
+        var onClickCallback = function(e) {
+            var elementId = $el.attr('id');
+            if (typeof CKEDITOR.instances[elementId] == 'undefined') {
+                $el.focus();
+                CKEDITOR.replace($el.get(0), config);
+                CKEDITOR.on('instanceLoaded', function(evt) {
+                    CKEDITOR.skin.loadPart('croogo');
+                });
+            } else {
+                CKEDITOR.instances[elementId].destroy();
+                $el.focus();
+            }
+        }
+
+        $btn.on('click', onClickCallback);
+        $btnContainer.append($btn);
     }
 
 }
