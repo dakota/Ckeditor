@@ -1,7 +1,7 @@
 linters:
   csslint: {  }
   phpcs:
-    standard: PSR2
+    standard: CakePHP
     fixer: true
 files:
   ignore:
