@@ -29,7 +29,7 @@ class CkeditorHelper extends Helper
      * @access public
      */
     public $helpers = [
-        'Html',
+        'Croogo',
         'Js',
     ];
 
@@ -53,8 +53,10 @@ class CkeditorHelper extends Helper
         $this->actions = array_keys(Configure::read('Wysiwyg.actions'));
         $action = Router::getActionPath($this->getView()->getRequest(), true);
         if (!empty($this->actions) && in_array($action, $this->actions)) {
-            $this->Html->script('Croogo/Ckeditor.wysiwyg', ['block' => 'scriptBottom']);
-            $this->Html->script('Croogo/Ckeditor.ckeditor', ['block' => 'scriptBottom']);
+            $this->Croogo->adminScript([
+                'Croogo/Ckeditor.wysiwyg',
+                'Croogo/Ckeditor.ckeditor',
+            ]);
 
             $ckeditorActions = Configure::read('Wysiwyg.actions');
             if (!isset($ckeditorActions[$action])) {
