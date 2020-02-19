@@ -80,6 +80,7 @@ Croogo.Wysiwyg.Ckeditor = {
                 $el.focus();
                 CKEDITOR.replace($el.get(0), config);
                 CKEDITOR.on('instanceLoaded', function(evt) {
+                    CKEDITOR.skin.loadPart('notification');
                     CKEDITOR.skin.loadPart('croogo');
                 });
             } else {
