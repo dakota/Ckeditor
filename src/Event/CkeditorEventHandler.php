@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Croogo\Ckeditor\Event;
 
@@ -22,7 +23,7 @@ class CkeditorEventHandler implements EventListenerInterface
      *
      * @return array
      */
-    public function implementedEvents()
+    public function implementedEvents(): array
     {
         return [
             'Croogo.bootstrapComplete' => [
