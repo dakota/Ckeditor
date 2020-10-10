@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Croogo\Ckeditor\View\Helper;
 
-use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\View\Helper;
-use Croogo\Core\Router;
+use Croogo\Core\Routing\Router;
 
 /**
  * Ckeditor Helper
